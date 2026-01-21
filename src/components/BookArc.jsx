@@ -60,6 +60,7 @@ const BookArc = ({
         style={{
           transition: 'all 0.3s ease-out',
           filter: isHovered || isSelected ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))' : 'none',
+          opacity: isHovered || isSelected ? 0.95 : 0.7,
         }}
       />
     </g>

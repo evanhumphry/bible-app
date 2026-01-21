@@ -351,6 +351,46 @@ body {
   font-style: italic;
 }
 
+/* Scripture navigation */
+.scripture-navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  border-top: 1px solid rgba(212, 165, 116, 0.3);
+  background: var(--color-cream);
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-white);
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--color-brown);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-button:hover:not(:disabled) {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-soft);
+}
+
+.nav-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-button svg {
+  width: 18px;
+  height: 18px;
+}
+
 /* Loading state */
 .loading-state {
   display: flex;

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import useBibleAPI from '../hooks/useBibleAPI';
 
-const ScriptureReader = ({ book, chapter, onClose }) => {
+const ScriptureReader = ({ book, chapter, onClose, onPrevChapter, onNextChapter, hasPrev, hasNext }) => {
   const [verses, setVerses] = useState([]);
   const { loading, error, fetchChapter } = useBibleAPI();
 
   useEffect(() => {
     const loadChapter = async () => {
+      setVerses([]);
       const data = await fetchChapter(book.name, chapter);
       if (data) {
         setVerses(data);
@@ -60,6 +61,33 @@ const ScriptureReader = ({ book, chapter, onClose }) => {
               <p>No verses found for this chapter.</p>
             </div>
           )}
+        </div>
+
+        {/* Navigation arrows */}
+        <div className="scripture-navigation">
+          <button
+            className="nav-button prev"
+            onClick={onPrevChapter}
+            disabled={!hasPrev}
+            title="Previous chapter"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            <span>Previous</span>
+          </button>
+
+          <button
+            className="nav-button next"
+            onClick={onNextChapter}
+            disabled={!hasNext}
+            title="Next chapter"
+          >
+            <span>Next</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
 
         <footer className="scripture-footer">

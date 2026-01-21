@@ -2,6 +2,7 @@ import { useState } from 'react';
 import BibleCircle from './components/BibleCircle';
 import ScriptureReader from './components/ScriptureReader';
 import AudioPlayer from './components/AudioPlayer';
+import { bibleBooks } from './data/bibleStructure';
 import './styles/App.css';
 
 function App() {
@@ -14,6 +15,52 @@ function App() {
   const handleCloseReader = () => {
     setSelectedChapter(null);
   };
+
+  const handlePrevChapter = () => {
+    if (!selectedChapter) return;
+
+    const { book, chapter } = selectedChapter;
+
+    if (chapter > 1) {
+      // Go to previous chapter in same book
+      setSelectedChapter({ book, chapter: chapter - 1 });
+    } else {
+      // Go to last chapter of previous book
+      const currentIndex = bibleBooks.findIndex((b) => b.id === book.id);
+      if (currentIndex > 0) {
+        const prevBook = bibleBooks[currentIndex - 1];
+        setSelectedChapter({ book: prevBook, chapter: prevBook.chapters });
+      }
+    }
+  };
+
+  const handleNextChapter = () => {
+    if (!selectedChapter) return;
+
+    const { book, chapter } = selectedChapter;
+
+    if (chapter < book.chapters) {
+      // Go to next chapter in same book
+      setSelectedChapter({ book, chapter: chapter + 1 });
+    } else {
+      // Go to first chapter of next book
+      const currentIndex = bibleBooks.findIndex((b) => b.id === book.id);
+      if (currentIndex < bibleBooks.length - 1) {
+        const nextBook = bibleBooks[currentIndex + 1];
+        setSelectedChapter({ book: nextBook, chapter: 1 });
+      }
+    }
+  };
+
+  // Determine if prev/next navigation is available
+  const hasPrev = selectedChapter
+    ? selectedChapter.chapter > 1 || selectedChapter.book.id > 1
+    : false;
+
+  const hasNext = selectedChapter
+    ? selectedChapter.chapter < selectedChapter.book.chapters ||
+      selectedChapter.book.id < bibleBooks.length
+    : false;
 
   return (
     <div className="app">
@@ -41,6 +88,10 @@ function App() {
           book={selectedChapter.book}
           chapter={selectedChapter.chapter}
           onClose={handleCloseReader}
+          onPrevChapter={handlePrevChapter}
+          onNextChapter={handleNextChapter}
+          hasPrev={hasPrev}
+          hasNext={hasNext}
         />
       )}
 

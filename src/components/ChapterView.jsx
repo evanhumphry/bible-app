@@ -80,6 +80,7 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
                 style={{
                   transition: 'all 0.2s ease-out',
                   filter: isHovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))' : 'none',
+                  opacity: isHovered ? 0.95 : 0.7,
                 }}
               />
             </g>

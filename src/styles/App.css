@@ -1,0 +1,588 @@
+/* Import elegant serif font */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+/* CSS Reset and Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Spiritual color palette */
+  --color-cream: #fdf8f0;
+  --color-gold: #d4a574;
+  --color-gold-light: #e8c49a;
+  --color-teal: #7eb5a6;
+  --color-teal-light: #a3d4c5;
+  --color-brown: #4a3728;
+  --color-brown-light: #8b7355;
+  --color-white: #ffffff;
+  --color-overlay: rgba(253, 248, 240, 0.95);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(74, 55, 40, 0.1);
+  --shadow-medium: 0 8px 30px rgba(74, 55, 40, 0.15);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-serif);
+  background: linear-gradient(135deg, #fdf8f0 0%, #f5ede0 50%, #fdf8f0 100%);
+  color: var(--color-brown);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* App container */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
+
+/* Background decoration */
+.background-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.light-ray {
+  position: absolute;
+  background: linear-gradient(
+    180deg,
+    rgba(212, 165, 116, 0.15) 0%,
+    rgba(212, 165, 116, 0.05) 50%,
+    transparent 100%
+  );
+  transform-origin: top center;
+}
+
+.ray-1 {
+  width: 300px;
+  height: 100vh;
+  top: 0;
+  left: 20%;
+  transform: rotate(-15deg);
+}
+
+.ray-2 {
+  width: 400px;
+  height: 100vh;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ray-3 {
+  width: 300px;
+  height: 100vh;
+  top: 0;
+  right: 20%;
+  transform: rotate(15deg);
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--color-brown);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.app-header p {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-brown-light);
+  letter-spacing: 0.1em;
+}
+
+/* Main content */
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Bible circle container */
+.bible-circle-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bible-circle {
+  filter: drop-shadow(0 10px 40px rgba(74, 55, 40, 0.15));
+}
+
+/* Book arc hover effect */
+.book-arc {
+  transition: transform 0.3s ease-out;
+}
+
+/* Tooltip */
+.book-tooltip {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-medium);
+  text-align: center;
+  z-index: 100;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.book-tooltip h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-brown);
+  margin-bottom: 5px;
+}
+
+.book-tooltip p {
+  font-size: 0.95rem;
+  color: var(--color-brown-light);
+}
+
+.book-tooltip .testament {
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+/* Chapter view */
+.chapter-view-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-button {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-brown);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background: var(--color-cream);
+  box-shadow: var(--shadow-medium);
+}
+
+.chapter-circle {
+  filter: drop-shadow(0 10px 40px rgba(74, 55, 40, 0.15));
+}
+
+.chapter-tooltip {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-medium);
+  text-align: center;
+  z-index: 100;
+}
+
+.chapter-tooltip p {
+  font-size: 1.1rem;
+  color: var(--color-brown);
+}
+
+.chapter-tooltip .hint {
+  font-size: 0.85rem;
+  color: var(--color-brown-light);
+  font-style: italic;
+}
+
+/* Scripture reader */
+.scripture-reader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(74, 55, 40, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+  padding: 20px;
+}
+
+.scripture-reader {
+  background: var(--color-cream);
+  width: 100%;
+  max-width: 700px;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: var(--shadow-medium);
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.4s ease-out;
+  overflow: hidden;
+}
+
+.scripture-header {
+  position: relative;
+  text-align: center;
+  padding: 30px 50px 20px;
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-cream) 100%);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+.scripture-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-brown);
+  margin-bottom: 5px;
+}
+
+.scripture-header h2 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-brown-light);
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--color-brown-light);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  color: var(--color-brown);
+  background: rgba(212, 165, 116, 0.2);
+}
+
+.scripture-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px 40px;
+}
+
+.verses {
+  line-height: 1.9;
+}
+
+.verse {
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+.verse-number {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  vertical-align: super;
+  margin-right: 4px;
+}
+
+.verse-text {
+  font-size: 1.1rem;
+  color: var(--color-brown);
+}
+
+.scripture-footer {
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid rgba(212, 165, 116, 0.3);
+  background: linear-gradient(0deg, var(--color-white) 0%, var(--color-cream) 100%);
+}
+
+.scripture-footer p {
+  font-size: 0.85rem;
+  color: var(--color-brown-light);
+  font-style: italic;
+}
+
+/* Loading state */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(212, 165, 116, 0.3);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-state p {
+  margin-top: 15px;
+  color: var(--color-brown-light);
+  font-style: italic;
+}
+
+/* Error state */
+.error-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.error-state p {
+  color: var(--color-brown-light);
+  margin-bottom: 15px;
+}
+
+.error-state button {
+  background: var(--color-gold);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.error-state button:hover {
+  background: var(--color-gold-light);
+}
+
+/* Audio player */
+.audio-player {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-white);
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-soft);
+  z-index: 500;
+  transition: all 0.3s ease;
+}
+
+.play-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-gold);
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.play-button:hover {
+  background: var(--color-gold-light);
+  transform: scale(1.05);
+}
+
+.play-button.playing {
+  background: var(--color-teal);
+}
+
+.play-button.playing:hover {
+  background: var(--color-teal-light);
+}
+
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.volume-controls.visible {
+  opacity: 1;
+  width: 100px;
+}
+
+.volume-icon {
+  color: var(--color-brown-light);
+  flex-shrink: 0;
+}
+
+.volume-slider {
+  width: 70px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(212, 165, 116, 0.3);
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  cursor: pointer;
+  border: none;
+}
+
+.music-hint {
+  font-size: 0.85rem;
+  color: var(--color-brown-light);
+  white-space: nowrap;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 20px;
+  z-index: 1;
+}
+
+.app-footer p {
+  font-size: 0.9rem;
+  color: var(--color-brown-light);
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .bible-circle,
+  .chapter-circle {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .scripture-reader {
+    max-height: 90vh;
+    margin: 10px;
+  }
+
+  .scripture-content {
+    padding: 20px;
+  }
+
+  .audio-player {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Scrollbar styling */
+.scripture-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scripture-content::-webkit-scrollbar-track {
+  background: rgba(212, 165, 116, 0.1);
+  border-radius: 4px;
+}
+
+.scripture-content::-webkit-scrollbar-thumb {
+  background: rgba(212, 165, 116, 0.4);
+  border-radius: 4px;
+}
+
+.scripture-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 165, 116, 0.6);
+}

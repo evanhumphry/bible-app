@@ -41,13 +41,19 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
         <defs>
           <radialGradient id="chapterGlow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#f8fafc" stopOpacity="1" />
-            <stop offset="70%" stopColor="#f1f5f9" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+            <stop offset="70%" stopColor="#e2e8f0" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#cbd5e1" stopOpacity="0.3" />
           </radialGradient>
         </defs>
 
-        {/* Center glow */}
-        <circle cx={centerX} cy={centerY} r={innerRadius - 10} fill="url(#chapterGlow)" />
+        {/* Center glow with breathing animation */}
+        <circle
+          cx={centerX}
+          cy={centerY}
+          r={innerRadius - 10}
+          fill="url(#chapterGlow)"
+          className="breathing-circle"
+        />
 
         {/* Chapter arcs - proportional to verse count */}
         {chapters.map((chapter) => {
@@ -77,8 +83,8 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
               <path
                 d={path}
                 fill={isHovered ? hoverColor : baseColor}
-                stroke="#fff"
-                strokeWidth={isHovered ? 2 : 1}
+                stroke="rgba(255,255,255,0.3)"
+                strokeWidth={0.5}
                 style={{
                   transition: 'all 0.2s ease-out',
                   filter: isHovered ? 'drop-shadow(0 2px 6px rgba(51,65,85,0.15))' : 'none',

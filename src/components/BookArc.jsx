@@ -56,8 +56,8 @@ const BookArc = ({
       <path
         d={path}
         fill={fillColor}
-        stroke="#fff"
-        strokeWidth={isHovered || isSelected ? 2 : 1}
+        stroke="rgba(255,255,255,0.3)"
+        strokeWidth={0.5}
         style={{
           transition: 'all 0.3s ease-out',
           filter: isHovered || isSelected ? 'drop-shadow(0 2px 6px rgba(51,65,85,0.15))' : 'none',

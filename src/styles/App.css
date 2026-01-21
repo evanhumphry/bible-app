@@ -584,6 +584,23 @@ body {
   }
 }
 
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+}
+
+/* Breathing circle animation */
+.breathing-circle {
+  animation: breathe 6s ease-in-out infinite;
+  transform-origin: center;
+}
+
 /* Responsive */
 @media (max-width: 800px) {
   .app-header h1 {

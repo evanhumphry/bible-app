@@ -6,9 +6,9 @@ const AudioPlayer = () => {
   const [showControls, setShowControls] = useState(false);
   const audioRef = useRef(null);
 
-  // Using a royalty-free ambient spiritual music URL
-  // This is a placeholder - in production, you'd host your own audio file
-  const audioSrc = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+  // Soft ambient piano - royalty-free from Pixabay
+  // "Ambient Piano" - gentle instrumental suitable for meditation/spiritual context
+  const audioSrc = 'https://cdn.pixabay.com/audio/2022/10/25/audio_946b0939c8.mp3';
 
   useEffect(() => {
     if (audioRef.current) {

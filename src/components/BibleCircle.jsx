@@ -11,7 +11,7 @@ const BibleCircle = ({ onChapterSelect }) => {
   const centerX = size / 2;
   const centerY = size / 2;
   const outerRadius = 280;
-  const innerRadius = 140;
+  const innerRadius = 210;
 
   const handleBookSelect = (book) => {
     setSelectedBook(book);
@@ -84,25 +84,10 @@ const BibleCircle = ({ onChapterSelect }) => {
           />
         ))}
 
-        {/* Center text - Title */}
-        <text
-          x={centerX}
-          y={centerY - 35}
-          textAnchor="middle"
-          style={{
-            fontSize: '22px',
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600,
-            fill: '#334155',
-          }}
-        >
-          Holy Bible
-        </text>
-
         {/* Stats line */}
         <text
           x={centerX}
-          y={centerY - 10}
+          y={centerY - 15}
           textAnchor="middle"
           style={{
             fontSize: '12px',
@@ -114,11 +99,11 @@ const BibleCircle = ({ onChapterSelect }) => {
         </text>
 
         {/* Hovered book name - shown in center when hovering */}
-        {hoveredBookData ? (
+        {hoveredBookData && (
           <>
             <text
               x={centerX}
-              y={centerY + 20}
+              y={centerY + 15}
               textAnchor="middle"
               style={{
                 fontSize: '16px',
@@ -132,7 +117,7 @@ const BibleCircle = ({ onChapterSelect }) => {
             </text>
             <text
               x={centerX}
-              y={centerY + 40}
+              y={centerY + 35}
               textAnchor="middle"
               style={{
                 fontSize: '12px',
@@ -143,19 +128,6 @@ const BibleCircle = ({ onChapterSelect }) => {
               {hoveredBookData.chapters} {hoveredBookData.chapters === 1 ? 'chapter' : 'chapters'}
             </text>
           </>
-        ) : (
-          <text
-            x={centerX}
-            y={centerY + 30}
-            textAnchor="middle"
-            style={{
-              fontSize: '11px',
-              fontFamily: "'Inter', sans-serif",
-              fill: '#94a3b8',
-            }}
-          >
-            Hover to explore
-          </text>
         )}
       </svg>
     </div>

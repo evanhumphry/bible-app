@@ -8,7 +8,7 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
   const centerX = size / 2;
   const centerY = size / 2;
   const outerRadius = 280;
-  const innerRadius = 100;
+  const innerRadius = 210;
 
   // Calculate chapter arcs proportionally based on verse counts
   const chapters = useMemo(() => calculateChapterArcs(book.name), [book.name]);
@@ -117,11 +117,11 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
         </text>
 
         {/* Hovered chapter info - shown in center */}
-        {hoveredChapterData ? (
+        {hoveredChapterData && (
           <>
             <text
               x={centerX}
-              y={centerY + 20}
+              y={centerY + 15}
               textAnchor="middle"
               style={{
                 fontSize: '16px',
@@ -134,7 +134,7 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
             </text>
             <text
               x={centerX}
-              y={centerY + 40}
+              y={centerY + 35}
               textAnchor="middle"
               style={{
                 fontSize: '12px',
@@ -145,19 +145,6 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
               {hoveredChapterData.verseCount} verses
             </text>
           </>
-        ) : (
-          <text
-            x={centerX}
-            y={centerY + 30}
-            textAnchor="middle"
-            style={{
-              fontSize: '11px',
-              fontFamily: "'Inter', sans-serif",
-              fill: '#94a3b8',
-            }}
-          >
-            Hover to explore
-          </text>
         )}
       </svg>
     </div>

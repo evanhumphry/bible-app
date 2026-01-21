@@ -49,11 +49,11 @@ const BibleCircle = ({ onChapterSelect }) => {
         viewBox={`0 0 ${size} ${size}`}
         className="bible-circle"
       >
-        {/* Subtle background glow */}
+        {/* Subtle background glow - bluish gray */}
         <defs>
           <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#fff9e6" stopOpacity="1" />
-            <stop offset="70%" stopColor="#fff5d6" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#f8fafc" stopOpacity="1" />
+            <stop offset="70%" stopColor="#f1f5f9" stopOpacity="0.5" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
           <filter id="glow">
@@ -90,10 +90,10 @@ const BibleCircle = ({ onChapterSelect }) => {
           y={centerY - 35}
           textAnchor="middle"
           style={{
-            fontSize: '24px',
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 700,
-            fill: '#4a3728',
+            fontSize: '22px',
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 600,
+            fill: '#334155',
           }}
         >
           Holy Bible
@@ -106,8 +106,8 @@ const BibleCircle = ({ onChapterSelect }) => {
           textAnchor="middle"
           style={{
             fontSize: '12px',
-            fontFamily: "'Cormorant Garamond', serif",
-            fill: '#8b7355',
+            fontFamily: "'Inter', sans-serif",
+            fill: '#64748b',
           }}
         >
           {TOTAL_BOOKS} Books · {TOTAL_CHAPTERS} Chapters
@@ -121,10 +121,10 @@ const BibleCircle = ({ onChapterSelect }) => {
               y={centerY + 20}
               textAnchor="middle"
               style={{
-                fontSize: '18px',
-                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: '16px',
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
-                fill: hoveredBookData.testament === 'old' ? '#b8956e' : '#5a9a8a',
+                fill: '#6b8cae',
                 transition: 'all 0.2s ease',
               }}
             >
@@ -132,13 +132,12 @@ const BibleCircle = ({ onChapterSelect }) => {
             </text>
             <text
               x={centerX}
-              y={centerY + 42}
+              y={centerY + 40}
               textAnchor="middle"
               style={{
                 fontSize: '12px',
-                fontFamily: "'Cormorant Garamond', serif",
-                fill: '#8b7355',
-                fontStyle: 'italic',
+                fontFamily: "'Inter', sans-serif",
+                fill: '#64748b',
               }}
             >
               {hoveredBookData.chapters} {hoveredBookData.chapters === 1 ? 'chapter' : 'chapters'}
@@ -151,9 +150,8 @@ const BibleCircle = ({ onChapterSelect }) => {
             textAnchor="middle"
             style={{
               fontSize: '11px',
-              fontFamily: "'Cormorant Garamond', serif",
-              fill: '#a89880',
-              fontStyle: 'italic',
+              fontFamily: "'Inter', sans-serif",
+              fill: '#94a3b8',
             }}
           >
             Hover to explore

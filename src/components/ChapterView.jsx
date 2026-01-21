@@ -19,8 +19,9 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
     ? chapters.find((c) => c.chapter === hoveredChapter)
     : null;
 
-  const baseColor = book.testament === 'old' ? '#d4a574' : '#7eb5a6';
-  const hoverColor = book.testament === 'old' ? '#e8c49a' : '#a3d4c5';
+  // Bluish-gray color palette
+  const baseColor = book.testament === 'old' ? '#7c9cb8' : '#8ba5b8';
+  const hoverColor = book.testament === 'old' ? '#9ab4c9' : '#a8bfcf';
 
   return (
     <div className="chapter-view-container">
@@ -39,8 +40,8 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
       >
         <defs>
           <radialGradient id="chapterGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#fff9e6" stopOpacity="1" />
-            <stop offset="70%" stopColor="#fff5d6" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#f8fafc" stopOpacity="1" />
+            <stop offset="70%" stopColor="#f1f5f9" stopOpacity="0.5" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
         </defs>
@@ -51,8 +52,9 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
         {/* Chapter arcs - proportional to verse count */}
         {chapters.map((chapter) => {
           const isHovered = hoveredChapter === chapter.chapter;
-          const currentOuterRadius = isHovered ? outerRadius + 15 : outerRadius;
-          const currentInnerRadius = isHovered ? innerRadius - 5 : innerRadius;
+          // Softer pop-out effect
+          const currentOuterRadius = isHovered ? outerRadius + 8 : outerRadius;
+          const currentInnerRadius = isHovered ? innerRadius - 2 : innerRadius;
 
           const path = getArcPath(
             centerX,
@@ -79,8 +81,8 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
                 strokeWidth={isHovered ? 2 : 1}
                 style={{
                   transition: 'all 0.2s ease-out',
-                  filter: isHovered ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))' : 'none',
-                  opacity: isHovered ? 0.95 : 0.7,
+                  filter: isHovered ? 'drop-shadow(0 2px 6px rgba(51,65,85,0.15))' : 'none',
+                  opacity: isHovered ? 0.9 : 0.75,
                 }}
               />
             </g>
@@ -93,10 +95,10 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
           y={centerY - 35}
           textAnchor="middle"
           style={{
-            fontSize: '22px',
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 700,
-            fill: '#4a3728',
+            fontSize: '20px',
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 600,
+            fill: '#334155',
           }}
         >
           {book.name}
@@ -107,8 +109,8 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
           textAnchor="middle"
           style={{
             fontSize: '12px',
-            fontFamily: "'Cormorant Garamond', serif",
-            fill: '#8b7355',
+            fontFamily: "'Inter', sans-serif",
+            fill: '#64748b',
           }}
         >
           {book.chapters} Chapters · {totalVerses} Verses
@@ -122,23 +124,22 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
               y={centerY + 20}
               textAnchor="middle"
               style={{
-                fontSize: '18px',
-                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: '16px',
+                fontFamily: "'Inter', sans-serif",
                 fontWeight: 600,
-                fill: book.testament === 'old' ? '#b8956e' : '#5a9a8a',
+                fill: '#6b8cae',
               }}
             >
               Chapter {hoveredChapterData.chapter}
             </text>
             <text
               x={centerX}
-              y={centerY + 42}
+              y={centerY + 40}
               textAnchor="middle"
               style={{
                 fontSize: '12px',
-                fontFamily: "'Cormorant Garamond', serif",
-                fill: '#8b7355',
-                fontStyle: 'italic',
+                fontFamily: "'Inter', sans-serif",
+                fill: '#64748b',
               }}
             >
               {hoveredChapterData.verseCount} verses
@@ -151,9 +152,8 @@ const ChapterView = ({ book, onBack, onChapterSelect, size }) => {
             textAnchor="middle"
             style={{
               fontSize: '11px',
-              fontFamily: "'Cormorant Garamond', serif",
-              fill: '#a89880',
-              fontStyle: 'italic',
+              fontFamily: "'Inter', sans-serif",
+              fill: '#94a3b8',
             }}
           >
             Hover to explore
